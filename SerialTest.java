@@ -12,6 +12,9 @@ import java.util.Enumeration;
 public class SerialTest implements SerialPortEventListener {
   public static int encoder = 0;
   public static Double piston = 0.0;
+  public static boolean v1=false;
+  public static boolean v2=false;
+  public static boolean v3=false;
   SerialPort serialPort;
         /** The port we're normally going to use. */
   private static final String PORT_NAMES[] = { 
@@ -97,7 +100,18 @@ public class SerialTest implements SerialPortEventListener {
       try {
         while(input.ready()) {
               String inputLine=input.readLine();
-              encoder = Integer.parseInt(inputLine.substring(3,inputLine.length()));
+              if (inputLine.charAt(0)=='e') {
+                  encoder = Integer.parseInt(inputLine.substring(3,inputLine.length()));
+              }
+              if (inputLine.charAt(0)=='P') {
+                v1= inputLine.charAt(3)-'0'==1;
+              }
+              if (inputLine.charAt(0)=='p') {
+                v2= inputLine.charAt(3)-'0'==1;
+              }
+              if (inputLine.charAt(0)=='o') {
+                v3= inputLine.charAt(3)-'0'==1;
+              }
               System.out.println(inputLine);
         }
         

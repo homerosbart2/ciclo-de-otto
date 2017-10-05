@@ -52,24 +52,27 @@ public class CicloOtto extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(background1, 0, 0, this);
-        g.drawImage(background2, 1037, 0, this);
-        g.drawImage(base, 1037, 0, this);
-        if(valve1Active){
-            g.drawImage(valve1, 1476, 325, this);
+        g.drawImage(background1, 0, 0,519, 1383/2, this);
+        g.drawImage(background2, 519, 0,933/2,350, this);
+        g.drawImage(base, 519, 0,933/2,350, this);
+        if(SerialTest.v1){
+            g.drawImage(valve1, 1476/2,325/2,139/2,26, this);
         }
-        if(valve2Active){
-            g.drawImage(valve2, 1330, 319, this);
+        if(SerialTest.v2){
+            g.drawImage(valve2, 1330/2,319/2,40,36, this);
         }
         //g.drawImage(demoGraph, 1037, 700, 933, 683, this);
-        g.drawImage(motor1, 20, -10, this);
-        g.drawImage(piston, 415, y, this);
-        g.drawImage(motor2, 20, -10, this);  
+        g.drawImage(motor1, 0,0,1037/2,1386/2, this);
+        g.drawImage(piston, 415/2 -10, y/2,80,89, this);
+        g.drawImage(motor2, 0,0,1037/2,1386/2, this);  
 
         //HUD   
-        g.drawImage(fire, 800, 50, this);
+        if (!SerialTest.v3 && (y/2-90) >= 115 && (y/2-90) <=140) {
+            System.out.println(y/2-90);
+          g.drawImage(fire, 190, y/2-90,100,100, this);
+        }
         if(reverseMovement){
-            g.drawImage(stop, 570, 600, 630, 765, this);  
+            g.drawImage(stop, 570/2, 600/2, 630/2, 765/2, this);  
         }  
          
     }
@@ -83,7 +86,7 @@ public class CicloOtto extends JPanel{
         CicloOtto co = new CicloOtto();
         JFrame frame = new JFrame("Ciclo de Otto");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1970,1382);
+        frame.setSize(985,691);
         frame.add(co);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -107,7 +110,6 @@ public class CicloOtto extends JPanel{
                 }
             }*/
             extra = SerialTest2.piston;
-        
             actualMovement = SerialTest.encoder;
             if(actualMovement > actualMovement2){
                 reverseMovement = false;
